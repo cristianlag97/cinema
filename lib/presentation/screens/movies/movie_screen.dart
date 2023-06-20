@@ -197,7 +197,7 @@ class _ActorsByMovie extends ConsumerWidget {
       height: 300,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: actorsBymovie.length,
+        itemCount: actorsBymovie[movieId]!.length,
         itemBuilder: (BuildContext context, int index) {
           final actor = actorsBymovie[movieId]![index];
           return Container(
