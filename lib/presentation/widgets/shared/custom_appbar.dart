@@ -1,13 +1,9 @@
-import 'package:cinemapedia/domain/entities/movie.dart';
-import 'package:cinemapedia/presentation/delegates/search_movie_delegate.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
-
-import '../../providers/providers.dart';
+part of presentation.widget.shared;
 
 class CustomAppBar extends ConsumerWidget {
-  const CustomAppBar({super.key});
+  const CustomAppBar({required this.refresh, super.key});
+
+  final VoidCallback refresh;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -24,8 +20,9 @@ class CustomAppBar extends ConsumerWidget {
               children: <Widget>[
                 Icon(Icons.movie_outlined, color: colors.primary),
                 const SizedBox(width: 5),
-                Text('Cinemapedia', style: titleStyle),
+                Text('title'.tr(), style: titleStyle),
                 const Spacer(),
+                _SelectLangage(ref: ref, refresh: refresh),
                 IconButton(
                   onPressed: () {
                     final searchedMovies = ref.read(searchMoviesProvider);
@@ -51,5 +48,48 @@ class CustomAppBar extends ConsumerWidget {
             ),
           ),
         ));
+  }
+}
+
+class _SelectLangage extends StatefulWidget {
+  const _SelectLangage({required this.refresh, required this.ref});
+
+  final WidgetRef ref;
+  final VoidCallback refresh;
+
+  @override
+  State<_SelectLangage> createState() => _SelectLangageState();
+}
+
+class _SelectLangageState extends State<_SelectLangage> {
+  @override
+  Widget build(BuildContext context) {
+    final prueba = widget.ref.watch(languageProvider);
+    final listlanguage = widget.ref.watch(listLanguageProvider);
+
+    return DropdownButton(
+        underline: const SizedBox(),
+        icon: SvgPicture.asset(
+          prueba.flag,
+          // ListLanguages.languages[1].flag,
+          width: 20,
+        ),
+        items: listlanguage
+            .map<DropdownMenuItem<Language>>((lang) => DropdownMenuItem(
+                  value: lang,
+                  child: Row(
+                    children: <Widget>[
+                      SvgPicture.asset(lang.flag, width: 25),
+                      const SizedBox(width: 8),
+                      Text(lang.country)
+                    ],
+                  ),
+                ))
+            .toList(),
+        onChanged: (language) {
+          widget.ref
+              .read(languageProvider.notifier)
+              .toggleLanguage(context, language!, widget.refresh);
+        });
   }
 }

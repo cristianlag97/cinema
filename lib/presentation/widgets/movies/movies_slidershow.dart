@@ -1,8 +1,4 @@
-import 'package:animate_do/animate_do.dart';
-import 'package:card_swiper/card_swiper.dart';
-import 'package:flutter/material.dart';
-
-import '../../../domain/entities/movie.dart';
+part of presentation.widget.movies;
 
 class MoviesSliderShow extends StatelessWidget {
   const MoviesSliderShow({required this.movies, super.key});
@@ -30,15 +26,15 @@ class MoviesSliderShow extends StatelessWidget {
         itemCount: movies.length,
         itemBuilder: (context, index) {
           final movie = movies[index];
-          return _Slide(movie: movie);
+          return _SlideShow(movie: movie);
         },
       ),
     );
   }
 }
 
-class _Slide extends StatelessWidget {
-  const _Slide({required this.movie});
+class _SlideShow extends StatelessWidget {
+  const _SlideShow({required this.movie});
 
   final Movie movie;
 
@@ -70,7 +66,9 @@ class _Slide extends StatelessWidget {
                   decoration: BoxDecoration(color: Colors.black45),
                 );
               }
-              return FadeIn(child: child);
+              return GestureDetector(
+                  onTap: () => context.push('/home/0/movie/${movie.id}'),
+                  child: FadeIn(child: child));
             },
           ),
         ),

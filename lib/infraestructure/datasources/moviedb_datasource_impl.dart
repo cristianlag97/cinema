@@ -1,9 +1,4 @@
-import 'package:cinemapedia/domain/datasources/movies_datasource.dart';
-
-import 'package:cinemapedia/infraestructure/mappers/movie_mapper.dart';
-import '../../config/helpers/dio.dart';
-import '../models/models.dart';
-import 'package:cinemapedia/domain/entities/movie.dart';
+part of infraestructure.datasource;
 
 class MovieDbDataSourceImpl extends MoviesDataSource {
   List<Movie> _jsonToMovies(Map<String, dynamic> response) {
@@ -41,11 +36,14 @@ class MovieDbDataSourceImpl extends MoviesDataSource {
   }
 
   @override
-  Future<List<Movie>> getTopRated({int page = 1}) async {
+  Future<List<Movie>> getTopRated({
+    int page = 1,
+    String language = 'en-US',
+  }) async {
     final response = await dio.get(
       '/movie/top_rated',
       queryParameters: {
-        'language': 'es-MX',
+        'language': language,
         'page': page,
       },
     );

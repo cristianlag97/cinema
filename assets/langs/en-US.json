@@ -1,0 +1,35 @@
+{
+  "title": "CinemaPedia",
+  "home": {
+    "in_theaters": "in theaters",
+    "soon": "Soon",
+    "in_this_month": "In this month",
+    "top_rated": "Top rated",
+    "general": "General"
+  },
+  "bottom_nav": {
+    "home": "Home",
+    "popular": "Popular",
+    "favorite": "Favorites"
+  },
+  "page_loading": {
+    "title": "Please wait",
+    "loading_movies": "Loading movies",
+    "buying_popcorn": "Buying popcorn",
+    "loading_popular": "Loading popular",
+    "'calling_my_girlfriend": "Calling my girlfriend",
+    "almost": "Almost...",
+    "this_is_taking_longer": "This is taking longer than expected :("
+  },
+  "favorete_page": {
+    "title": "Favorites",
+    "empty_state": {
+      "title": "Oh no!! it's empty",
+      "description": "You don't have favorite movies",
+      "action": "start searching"
+    }
+  },
+  "search_page": {
+    "title": "Search movie"
+  }
+}

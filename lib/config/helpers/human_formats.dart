@@ -1,4 +1,4 @@
-import 'package:intl/intl.dart';
+part of config.helpers;
 
 class HumanFormats {
   static String number(double number, [int decimals = 0]) {

@@ -1,8 +1,6 @@
 //TODO: leer diferentes modelos y crear la entidad
 
-import 'package:cinemapedia/domain/entities/movie.dart';
-
-import '../models/moviedb/moviedb.dart';
+part of infraestructure.mappers;
 
 class MovieMapper {
   static Movie movieDBToEntity(MovieMovieDB movieDB) => Movie(

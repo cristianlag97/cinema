@@ -1,4 +1,4 @@
-import '../entities/movie.dart';
+part of domain.repositories;
 
 abstract class LocalStoragerepository {
   Future<void> toggleFavorite(Movie movie);

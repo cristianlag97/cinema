@@ -1,8 +1,4 @@
-import 'package:cinemapedia/domain/repositories/local_storage_repository.dart';
-import 'package:cinemapedia/presentation/providers/storage/storage.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../../domain/entities/movie.dart';
+part of presentation.provider.storage;
 
 final favoriteMoviesProvider =
     StateNotifierProvider<StorageMoviesNotifier, Map<int, Movie>>((ref) {

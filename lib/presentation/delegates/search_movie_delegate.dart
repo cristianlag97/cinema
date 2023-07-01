@@ -1,9 +1,11 @@
 import 'dart:async';
 
 import 'package:animate_do/animate_do.dart';
-import 'package:cinemapedia/config/helpers/human_formats.dart';
 import 'package:cinemapedia/domain/entities/movie.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+
+import '../../config/config.dart';
 
 typedef SearchMoviesCallback = Future<List<Movie>> Function(String query);
 
@@ -11,7 +13,7 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
   SearchMovieDelegate({
     required this.searchMovies,
     required this.initialMovies,
-  }) : super(searchFieldLabel: 'Buscar película');
+  }) : super(searchFieldLabel: 'search_page.title'.tr());
 
   final SearchMoviesCallback searchMovies;
   List<Movie> initialMovies;

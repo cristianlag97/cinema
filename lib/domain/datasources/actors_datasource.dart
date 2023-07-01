@@ -1,4 +1,4 @@
-import 'package:cinemapedia/domain/entities/actor.dart';
+part of domain.datasources;
 
 abstract class ActorsDatasource {
   Future<List<Actor>> getActorsBymovie(String movieId);

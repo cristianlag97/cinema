@@ -1,6 +1,4 @@
-import 'package:cinemapedia/domain/datasources/movies_datasource.dart';
-import 'package:cinemapedia/domain/entities/movie.dart';
-import 'package:cinemapedia/domain/repositories/movies_repository.dart';
+part of infraestructure.repositories;
 
 class MovieRepositoryImpl extends MoviesRepository {
   MovieRepositoryImpl(this.dataSource);
@@ -18,8 +16,11 @@ class MovieRepositoryImpl extends MoviesRepository {
   }
 
   @override
-  Future<List<Movie>> getTopRated({int page = 1}) {
-    return dataSource.getTopRated(page: page);
+  Future<List<Movie>> getTopRated({
+    int page = 1,
+    String language = 'en-US',
+  }) {
+    return dataSource.getTopRated(page: page, language: language);
   }
 
   @override

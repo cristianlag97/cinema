@@ -1,11 +1,4 @@
-import 'package:animate_do/animate_do.dart';
-import 'package:cinemapedia/presentation/providers/storage/local_storage_provider.dart';
-import 'package:cinemapedia/presentation/providers/storage/storage.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../../domain/entities/movie.dart';
-import '../../providers/providers.dart';
+part of presentation.screen.movies;
 
 class MovieScreen extends ConsumerStatefulWidget {
   const MovieScreen({required this.movieId, super.key});
@@ -22,6 +15,7 @@ class _MovieScreenState extends ConsumerState<MovieScreen> {
   @override
   void initState() {
     super.initState();
+    ref.read(languageProvider);
     ref.read(movieInfo.notifier).loadmovie(widget.movieId);
     ref.read(actorsByMovieProvider.notifier).loadActors(widget.movieId);
   }

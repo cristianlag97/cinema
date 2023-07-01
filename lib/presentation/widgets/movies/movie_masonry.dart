@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-
-import '../../../domain/entities/movie.dart';
-import '../widgets.dart';
+part of presentation.widget.movies;
 
 class MovieMasonry extends StatefulWidget {
   const MovieMasonry({required this.movies, this.loadNextPage, super.key});

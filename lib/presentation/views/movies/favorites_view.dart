@@ -1,10 +1,4 @@
-import 'package:cinemapedia/presentation/widgets/widgets.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
-
-import '../../../domain/entities/movie.dart';
-import '../../providers/storage/storage.dart';
+part of presentation.views.movies;
 
 class FavoritesView extends ConsumerStatefulWidget {
   const FavoritesView({super.key});
@@ -43,24 +37,26 @@ class _FavoritesViewState extends ConsumerState<FavoritesView> {
 
     if (movies.isEmpty) {
       final colors = Theme.of(context).colorScheme;
-
+      ref.watch(languageProvider);
       return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Icon(Icons.favorite_outline_sharp, size: 60, color: colors.primary),
             Text(
-              'Oh no!!',
+              'favorete_page.empty_state.title'.tr(),
               style: TextStyle(fontSize: 30, color: colors.primary),
             ),
-            const Text(
-              'No tienes películas favoritas',
-              style: TextStyle(fontSize: 20, color: Colors.black45),
+            Text(
+              'favorete_page.empty_state.description'.tr(),
+              style: const TextStyle(fontSize: 20, color: Colors.black45),
             ),
             const SizedBox(height: 20),
             FilledButton.tonal(
-              onPressed: () => context.push('/home/0'),
-              child: const Text('Empieza a buscar'),
+              onPressed: () => context.go('/home/0'),
+              child: Text(
+                'favorete_page.empty_state.action'.tr(),
+              ),
             )
           ],
         ),

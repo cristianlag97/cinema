@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../providers/providers.dart';
-import '../../widgets/widgets.dart';
+part of presentation.views.movies;
 
 class HomeView extends ConsumerStatefulWidget {
   const HomeView({super.key});
@@ -11,7 +7,8 @@ class HomeView extends ConsumerStatefulWidget {
   ConsumerState<HomeView> createState() => _HomeViewState();
 }
 
-class _HomeViewState extends ConsumerState<HomeView> {
+class _HomeViewState extends ConsumerState<HomeView>
+    with AutomaticKeepAliveClientMixin, WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
@@ -19,25 +16,43 @@ class _HomeViewState extends ConsumerState<HomeView> {
     ref.read(popularsMoviesProvider.notifier).loadNextPage();
     ref.read(topRatedmoviesProvider.notifier).loadNextPage();
     ref.read(upcomingMoviesProvider.notifier).loadNextPage();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  void refresh() {
+    setState(() {});
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     final initialLoading = ref.watch(initialLoadingProvider);
     if (initialLoading) return const FullScreenLoader();
+    final lagunage = ref.watch(languageProvider);
+
+    DateTime now = DateTime.now();
+    String dayOfWeek =
+        DateFormat('EEEE d', lagunage.locale.languageCode).format(now);
 
     final nowPlayingMoviesState = ref.watch(nowPlayingMoviesProvider);
-    final popularMoviesState = ref.watch(popularsMoviesProvider);
+    // final popularMoviesState = ref.watch(popularsMoviesProvider);
     final sliderShowMovies = ref.watch(moviesSlideShowProvider);
     final topRatedMoviesState = ref.watch(topRatedmoviesProvider);
     final upcomingoviesState = ref.watch(upcomingMoviesProvider);
 
     return CustomScrollView(slivers: <Widget>[
-      const SliverAppBar(
+      SliverAppBar(
         floating: true,
         flexibleSpace: FlexibleSpaceBar(
           centerTitle: true,
-          title: CustomAppBar(),
+          title: CustomAppBar(refresh: refresh),
         ),
       ),
       SliverList(
@@ -48,28 +63,28 @@ class _HomeViewState extends ConsumerState<HomeView> {
               MoviesSliderShow(movies: sliderShowMovies),
               MovieHorizontalListView(
                 movies: nowPlayingMoviesState,
-                title: 'En cines',
-                subTitle: 'Lunes 20',
+                title: 'home.in_theaters'.tr(),
+                subTitle: dayOfWeek,
                 loadNextPage: () =>
                     ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
               ),
               MovieHorizontalListView(
                 movies: upcomingoviesState,
-                title: 'Proximamente',
-                subTitle: 'En este mes',
+                title: LocaleKeys.home_soon.tr(),
+                subTitle: LocaleKeys.home_in_this_month.tr(),
                 loadNextPage: () =>
                     ref.read(upcomingMoviesProvider.notifier).loadNextPage(),
               ),
-              MovieHorizontalListView(
-                movies: popularMoviesState,
-                title: 'Populares',
-                loadNextPage: () =>
-                    ref.read(popularsMoviesProvider.notifier).loadNextPage(),
-              ),
+              // MovieHorizontalListView(
+              //   movies: popularMoviesState,
+              //   title: 'Populares',
+              //   loadNextPage: () =>
+              //       ref.read(popularsMoviesProvider.notifier).loadNextPage(),
+              // ),
               MovieHorizontalListView(
                 movies: topRatedMoviesState,
-                title: 'Mejor calificada',
-                subTitle: 'General',
+                title: 'home.top_rated'.tr(),
+                subTitle: 'home.general'.tr(),
                 loadNextPage: () =>
                     ref.read(topRatedmoviesProvider.notifier).loadNextPage(),
               ),
@@ -80,4 +95,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
       ),
     ]);
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

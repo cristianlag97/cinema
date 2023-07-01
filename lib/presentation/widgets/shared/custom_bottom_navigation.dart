@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+part of presentation.widget.shared;
 
-class CustomBottomNavigation extends StatelessWidget {
+class CustomBottomNavigation extends ConsumerWidget {
   const CustomBottomNavigation({required this.currentIndex, super.key});
 
   final int currentIndex;
@@ -21,20 +20,23 @@ class CustomBottomNavigation extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    ref.watch(languageProvider);
+
     return BottomNavigationBar(
         onTap: (int index) => onItemTapped(context, index),
         elevation: 0,
         currentIndex: currentIndex,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.home_max), label: 'Inicio'),
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.label_outline),
-            label: 'Categorías',
+              icon: const Icon(Icons.home_max), label: 'bottom_nav.home'.tr()),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.label_outline),
+            label: 'bottom_nav.popular'.tr(),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite_outline),
-            label: 'Favoritos',
+            icon: const Icon(Icons.favorite_outline),
+            label: 'bottom_nav.favorite'.tr(),
           ),
         ]);
   }

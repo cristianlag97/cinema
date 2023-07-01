@@ -1,6 +1,4 @@
-import 'package:cinemapedia/infraestructure/datasources/isar_datasource_impl.dart';
-import 'package:cinemapedia/infraestructure/repositories/local_storage_repository_impl.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+part of presentation.provider.storage;
 
 final localStorageRepositoryProvider = Provider((ref) {
   return LocalStorageRepositoryImpl(IsarDataSourceImpl());

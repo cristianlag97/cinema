@@ -1,7 +1,4 @@
-import 'package:cinemapedia/domain/entities/movie.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import 'movies_providers.dart';
+part of presentation.provider.actors;
 
 final moviesSlideShowProvider = Provider<List<Movie>>((ref) {
   final moviesStateProvider = ref.watch(nowPlayingMoviesProvider);

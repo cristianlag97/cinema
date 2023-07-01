@@ -1,4 +1,4 @@
-import 'package:cinemapedia/domain/entities/movie.dart';
+part of domain.repositories;
 
 //TODO: quien llama el origin de datos
 

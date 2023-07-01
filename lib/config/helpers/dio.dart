@@ -1,6 +1,4 @@
-import 'package:dio/dio.dart';
-
-import '../contans/enviroment.dart';
+part of config.helpers;
 
 Dio get dio => Dio(
       BaseOptions(

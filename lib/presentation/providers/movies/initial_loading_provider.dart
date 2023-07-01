@@ -1,6 +1,4 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../providers.dart';
+part of presentation.provider.actors;
 
 final initialLoadingProvider = Provider<bool>((ref) {
   final step1 = ref.watch(nowPlayingMoviesProvider).isEmpty;

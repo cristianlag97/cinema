@@ -1,0 +1,35 @@
+{
+  "title": "Cinema-Pedia",
+  "home": {
+    "in_theaters": "En cines",
+    "soon": "Próximamente",
+    "in_this_month": "En este mes",
+    "top_rated": "Mejor calificada",
+    "general": "General"
+  },
+  "bottom_nav": {
+     "home": "inicio",
+     "popular": "populares",
+     "favorite": "Favoritos"
+  },
+  "page_loading": {
+    "title": "Espere por favor",
+    "loading_movies": "Cargando películas",
+    "buying_popcorn": "Comprando palomitas de maíz",
+    "loading_popular": "Cargando populares",
+    "'calling_my_girlfriend": "Llamando a mi novia",
+    "almost": "Ya casi...",
+    "this_is_taking_longer": "Esto está tardando más de lo esperado :("
+  },
+  "favorete_page": {
+    "title": "Favoritos",
+    "empty_state": {
+      "title": "Oh no!! está vacia",
+      "description": "No tienes películas favoritas",
+      "action": "Empieza a buscar"
+    }
+  },
+  "search_page": {
+    "title": "Buscar película"
+  }
+}

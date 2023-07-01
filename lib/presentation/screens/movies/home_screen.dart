@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
-
-import 'package:cinemapedia/presentation/widgets/widgets.dart';
-
-import '../../views/views.dart';
+part of presentation.screen.movies;
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({required this.pageIndex, super.key});

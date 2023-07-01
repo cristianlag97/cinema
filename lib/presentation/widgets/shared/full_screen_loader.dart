@@ -1,16 +1,16 @@
-import 'package:flutter/material.dart';
+part of presentation.widget.shared;
 
 class FullScreenLoader extends StatelessWidget {
   const FullScreenLoader({super.key});
 
   Stream<String> getLoadingMessage() {
     final messages = <String>[
-      'Cargando películas',
-      'Comprando palomitas de maíz',
-      'Cargando populares',
-      'Llamando a mi novia',
-      'Ya casi...',
-      'Esto está tardando más de lo esperado :(',
+      'page_loading.loading_movies'.tr(),
+      'page_loading.buying_popcorn'.tr(),
+      'page_loading.loading_popular'.tr(),
+      'page_loading.calling_my_girlfriend'.tr(),
+      'page_loading.almost'.tr(),
+      'page_loading.this_is_taking_longer'.tr(),
     ];
     return Stream.periodic(const Duration(milliseconds: 1200), (step) {
       return messages[step];
@@ -23,7 +23,7 @@ class FullScreenLoader extends StatelessWidget {
         child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text('Espere por favor'),
+        Text('page_loading.title'.tr()),
         const SizedBox(height: 10),
         const CircularProgressIndicator(strokeWidth: 2),
         const SizedBox(height: 10),

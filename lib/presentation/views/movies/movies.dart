@@ -1,0 +1,15 @@
+library presentation.views.movies;
+
+import 'package:cinemapedia/config/langs/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../../domain/domain.dart';
+import '../../providers/language/language_provider.dart';
+import '../../providers/providers.dart';
+import '../../widgets/widgets.dart';
+
+part 'favorites_view.dart';
+part 'home_view.dart';
