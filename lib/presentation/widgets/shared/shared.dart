@@ -1,6 +1,5 @@
 library presentation.widget.shared;
 
-import 'package:cinemapedia/presentation/providers/language/language_provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

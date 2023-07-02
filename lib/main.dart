@@ -1,10 +1,11 @@
 import 'package:cinemapedia/config/config.dart';
-import 'package:cinemapedia/presentation/providers/language/language_provider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:easy_localization/easy_localization.dart';
+
+import 'presentation/presentation.dart';
 
 Future<void> main() async {
   await dotenv.load(fileName: ".env");

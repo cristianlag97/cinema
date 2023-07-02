@@ -1,9 +1,7 @@
 part of presentation.widget.shared;
 
 class CustomAppBar extends ConsumerWidget {
-  const CustomAppBar({required this.refresh, super.key});
-
-  final VoidCallback refresh;
+  const CustomAppBar({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -22,7 +20,7 @@ class CustomAppBar extends ConsumerWidget {
                 const SizedBox(width: 5),
                 Text('title'.tr(), style: titleStyle),
                 const Spacer(),
-                _SelectLangage(ref: ref, refresh: refresh),
+                _SelectLangage(ref: ref),
                 IconButton(
                   onPressed: () {
                     final searchedMovies = ref.read(searchMoviesProvider);
@@ -52,10 +50,9 @@ class CustomAppBar extends ConsumerWidget {
 }
 
 class _SelectLangage extends StatefulWidget {
-  const _SelectLangage({required this.refresh, required this.ref});
+  const _SelectLangage({required this.ref});
 
   final WidgetRef ref;
-  final VoidCallback refresh;
 
   @override
   State<_SelectLangage> createState() => _SelectLangageState();
@@ -89,7 +86,7 @@ class _SelectLangageState extends State<_SelectLangage> {
         onChanged: (language) {
           widget.ref
               .read(languageProvider.notifier)
-              .toggleLanguage(context, language!, widget.refresh);
+              .toggleLanguage(context, language!);
         });
   }
 }

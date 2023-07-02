@@ -8,7 +8,7 @@ class HomeView extends ConsumerStatefulWidget {
 }
 
 class _HomeViewState extends ConsumerState<HomeView>
-    with AutomaticKeepAliveClientMixin, WidgetsBindingObserver {
+    with AutomaticKeepAliveClientMixin {
   @override
   void initState() {
     super.initState();
@@ -16,17 +16,6 @@ class _HomeViewState extends ConsumerState<HomeView>
     ref.read(popularsMoviesProvider.notifier).loadNextPage();
     ref.read(topRatedmoviesProvider.notifier).loadNextPage();
     ref.read(upcomingMoviesProvider.notifier).loadNextPage();
-    WidgetsBinding.instance.addObserver(this);
-  }
-
-  void refresh() {
-    setState(() {});
-  }
-
-  @override
-  void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
-    super.dispose();
   }
 
   @override
@@ -48,11 +37,11 @@ class _HomeViewState extends ConsumerState<HomeView>
     final upcomingoviesState = ref.watch(upcomingMoviesProvider);
 
     return CustomScrollView(slivers: <Widget>[
-      SliverAppBar(
+      const SliverAppBar(
         floating: true,
         flexibleSpace: FlexibleSpaceBar(
           centerTitle: true,
-          title: CustomAppBar(refresh: refresh),
+          title: CustomAppBar(),
         ),
       ),
       SliverList(
@@ -70,8 +59,8 @@ class _HomeViewState extends ConsumerState<HomeView>
               ),
               MovieHorizontalListView(
                 movies: upcomingoviesState,
-                title: LocaleKeys.home_soon.tr(),
-                subTitle: LocaleKeys.home_in_this_month.tr(),
+                title: 'home.soon'.tr(),
+                subTitle: 'home.in_this_month'.tr(),
                 loadNextPage: () =>
                     ref.read(upcomingMoviesProvider.notifier).loadNextPage(),
               ),
