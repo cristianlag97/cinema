@@ -28,7 +28,7 @@ class _HomeViewState extends ConsumerState<HomeView>
 
     DateTime now = DateTime.now();
     String dayOfWeek =
-        DateFormat('EEEE d', lagunage.locale.languageCode).format(now);
+        DateFormat('EEEE d', lagunage.locale!.languageCode).format(now);
 
     final nowPlayingMoviesState = ref.watch(nowPlayingMoviesProvider);
     // final popularMoviesState = ref.watch(popularsMoviesProvider);

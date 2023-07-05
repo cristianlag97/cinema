@@ -1,6 +1,7 @@
 library presentation.screen.movies;
 
 import 'package:animate_do/animate_do.dart';
+import 'package:cinemapedia/config/contans/local_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

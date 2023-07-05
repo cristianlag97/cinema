@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 class LanguageModel {
   LanguageModel({
-    this.flag = 'assets/icons/flag-for-usa.svg',
-    this.locale = const Locale('en', 'US'),
+    this.flag,
+    this.locale,
   });
 
-  final Locale locale;
-  final String flag;
+  final Locale? locale;
+  final String? flag;
 
   LanguageModel copyWith({
     String? flag,

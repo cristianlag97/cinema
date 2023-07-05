@@ -8,6 +8,16 @@ class LanguageNotifier extends StateNotifier<LanguageModel> {
 
   final ChangeLanguageCallback callback;
 
+  Future<void> initStateLanguage() async {
+    final int index = StorageService.instance.getLanguageCode;
+    final String flag = StorageService.instance.getFlag;
+
+    state = state.copyWith(
+      flag: state.copyWith().flag ?? flag,
+      locale: state.copyWith().locale ?? ListLanguages.languages[index].locale,
+    );
+  }
+
   void toggleLanguage(BuildContext context, Language language) async {
     final languageSelected = await callback(context, language);
     state = state.copyWith(

@@ -3,14 +3,14 @@ part of config.helpers;
 class ListLanguages {
   static final List<Language> languages = [
     Language(
-      id: 1,
+      id: 0,
       country: 'CO',
       language: 'es',
       flag: 'assets/icons/flag-for-colombia.svg',
       locale: const Locale('es', 'CO'),
     ),
     Language(
-      id: 2,
+      id: 1,
       country: 'US',
       language: 'en',
       flag: 'assets/icons/flag-for-usa.svg',

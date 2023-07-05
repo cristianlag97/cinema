@@ -1,16 +1,16 @@
 part of presentation.screen.movies;
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({required this.pageIndex, super.key});
 
   final int pageIndex;
   static const name = 'home-movies';
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen>
+class _HomeScreenState extends ConsumerState<HomeScreen>
     with AutomaticKeepAliveClientMixin {
   late PageController pageController;
 
@@ -22,8 +22,14 @@ class _HomeScreenState extends State<HomeScreen>
 
   @override
   void initState() {
+    init();
     super.initState();
     pageController = PageController(keepPage: true);
+  }
+
+  void init() async {
+    await StorageService.instance.init();
+    await ref.read(languageProvider.notifier).initStateLanguage();
   }
 
   @override

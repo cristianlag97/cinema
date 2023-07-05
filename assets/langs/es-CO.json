@@ -1,5 +1,5 @@
 {
-  "title": "Cinema-Pedia",
+  "title": "CinemaPedia",
   "home": {
     "in_theaters": "En cines",
     "soon": "Próximamente",
@@ -14,10 +14,11 @@
   },
   "page_loading": {
     "title": "Espere por favor",
+    "loading": "Cargando...",
     "loading_movies": "Cargando películas",
     "buying_popcorn": "Comprando palomitas de maíz",
     "loading_popular": "Cargando populares",
-    "'calling_my_girlfriend": "Llamando a mi novia",
+    "calling_my_girlfriend": "Llamando a mi novia",
     "almost": "Ya casi...",
     "this_is_taking_longer": "Esto está tardando más de lo esperado :("
   },
