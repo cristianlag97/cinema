@@ -6,6 +6,7 @@ import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 
 import '../../config/config.dart';
+import '../../config/contans/local_storage.dart';
 import '../../domain/domain.dart';
 import '../mappers/mappers.dart';
 import '../models/models.dart';

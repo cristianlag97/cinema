@@ -5,7 +5,6 @@ Dio get dio => Dio(
         baseUrl: 'https://api.themoviedb.org/3',
         queryParameters: {
           'api_key': Enviroment.theMovieDbKey,
-          // 'language': 'es-MX'
         },
       ),
     );

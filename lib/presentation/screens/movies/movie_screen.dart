@@ -23,6 +23,7 @@ class _MovieScreenState extends ConsumerState<MovieScreen> {
   @override
   Widget build(BuildContext context) {
     final Movie? movieDetail = ref.watch(movieInfo)[widget.movieId];
+    final lagunage = ref.watch(languageProvider);
 
     if (movieDetail == null) {
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
@@ -35,7 +36,10 @@ class _MovieScreenState extends ConsumerState<MovieScreen> {
           _CustomSliverAppBar(movie: movieDetail),
           SliverList(
             delegate: SliverChildBuilderDelegate(
-              (context, index) => _MovieDetails(movie: movieDetail),
+              (context, index) => _MovieDetails(
+                movie: movieDetail,
+                languages: lagunage,
+              ),
               childCount: 1,
             ),
           ),
@@ -46,9 +50,10 @@ class _MovieScreenState extends ConsumerState<MovieScreen> {
 }
 
 class _MovieDetails extends StatelessWidget {
-  const _MovieDetails({required this.movie});
+  const _MovieDetails({required this.movie, required this.languages});
 
   final Movie movie;
+  final LanguageModel languages;
 
   @override
   Widget build(BuildContext context) {
@@ -58,59 +63,103 @@ class _MovieDetails extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.all(8),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: Image.network(
-                  movie.posterPath,
-                  width: size.width * 0.3,
-                ),
-              ),
-              const SizedBox(width: 10),
+        _TitleAndOverView(
+          movie: movie,
+          size: size,
+          textTheme: textTheme,
+          languages: languages,
+        ),
+        _Genres(movie: movie),
+        _ActorsByMovie(movieId: movie.id.toString()),
+        VideosFromMovie(movieId: movie.id),
+        const SizedBox(height: 10),
+        SimilarMovies(movieId: movie.id),
+      ],
+    );
+  }
+}
 
-              //Descripcion
+class _Genres extends StatelessWidget {
+  const _Genres({required this.movie});
 
-              SizedBox(
-                width: (size.width - 40) * 0.7,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(movie.title, style: textTheme.titleLarge),
-                    const SizedBox(height: 8),
-                    Text(movie.overview)
-                  ],
+  final Movie movie;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8),
+      child: Wrap(
+        children: [
+          ...movie.genreIds
+              .map(
+                (gender) => Container(
+                  margin: const EdgeInsets.only(right: 10),
+                  child: Chip(
+                    label: Text(gender),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
                 ),
               )
-            ],
+              .toList()
+        ],
+      ),
+    );
+  }
+}
+
+class _TitleAndOverView extends StatelessWidget {
+  const _TitleAndOverView({
+    required this.movie,
+    required this.size,
+    required this.textTheme,
+    required this.languages,
+  });
+
+  final Movie movie;
+  final Size size;
+  final TextTheme textTheme;
+  final LanguageModel languages;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 8),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: Image.network(
+              movie.posterPath,
+              width: size.width * 0.3,
+            ),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8),
-          child: Wrap(
-            children: [
-              ...movie.genreIds
-                  .map(
-                    (gender) => Container(
-                      margin: const EdgeInsets.only(right: 10),
-                      child: Chip(
-                        label: Text(gender),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                      ),
-                    ),
-                  )
-                  .toList()
-            ],
-          ),
-        ),
-        _ActorsByMovie(movieId: movie.id.toString()),
-        const SizedBox(height: 50)
-      ],
+          const SizedBox(width: 10),
+          SizedBox(
+            width: (size.width - 40) * 0.7,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(movie.title, style: textTheme.titleLarge),
+                Text(movie.overview),
+                const SizedBox(height: 10),
+                MovieRating(voteAverage: movie.voteAverage),
+                Row(
+                  children: [
+                    Text('movie_info.premieres'.tr(),
+                        style: const TextStyle(fontWeight: FontWeight.bold)),
+                    const SizedBox(width: 5),
+                    Text(HumanFormats.shortDate(
+                        movie.releaseDate, languages.locale!.language))
+                  ],
+                )
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 }
@@ -133,7 +182,6 @@ class _CustomSliverAppBar extends ConsumerWidget {
       actions: <Widget>[
         IconButton(
           onPressed: () async {
-            // ref.read(localStorageRepositoryProvider).toggleFavorite(movie);
             await ref
                 .read(favoriteMoviesProvider.notifier)
                 .toggleFavorite(movie);
@@ -151,11 +199,6 @@ class _CustomSliverAppBar extends ConsumerWidget {
       ],
       flexibleSpace: FlexibleSpaceBar(
         titlePadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-        // title: Text(
-        //   movie.title,
-        //   style: const TextStyle(fontSize: 20),
-        //   textAlign: TextAlign.start,
-        // ),
         background: Stack(
           children: [
             SizedBox.expand(

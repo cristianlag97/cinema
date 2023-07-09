@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:cinemapedia/domain/domain.dart';
 
 class LanguageModel {
   LanguageModel({
@@ -6,12 +6,12 @@ class LanguageModel {
     this.locale,
   });
 
-  final Locale? locale;
+  final Language? locale;
   final String? flag;
 
   LanguageModel copyWith({
     String? flag,
-    Locale? locale,
+    Language? locale,
   }) =>
       LanguageModel(
         flag: flag ?? this.flag,

@@ -12,24 +12,12 @@ class HomeScreen extends ConsumerStatefulWidget {
 
 class _HomeScreenState extends ConsumerState<HomeScreen>
     with AutomaticKeepAliveClientMixin {
-  late PageController pageController;
-
-  final viewRoutes = const <Widget>[
-    HomeView(),
-    SizedBox(),
-    FavoritesView(),
-  ];
+  PageController pageController = PageController();
 
   @override
   void initState() {
-    init();
     super.initState();
     pageController = PageController(keepPage: true);
-  }
-
-  void init() async {
-    await StorageService.instance.init();
-    await ref.read(languageProvider.notifier).initStateLanguage();
   }
 
   @override
@@ -37,6 +25,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
     pageController.dispose();
     super.dispose();
   }
+
+  final viewRoutes = const <Widget>[
+    HomeView(),
+    PopularView(),
+    FavoritesView(),
+  ];
 
   @override
   Widget build(BuildContext context) {

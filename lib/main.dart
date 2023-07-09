@@ -5,6 +5,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:easy_localization/easy_localization.dart';
 
+import 'config/contans/local_storage.dart';
 import 'presentation/presentation.dart';
 
 Future<void> main() async {
@@ -35,16 +36,34 @@ class LocalizationApp extends StatelessWidget {
   }
 }
 
-class MainApp extends ConsumerWidget {
+class MainApp extends ConsumerStatefulWidget {
   const MainApp({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final prueba = ref.watch(languageProvider);
+  ConsumerState<MainApp> createState() => _MainAppState();
+}
+
+class _MainAppState extends ConsumerState<MainApp> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      init();
+    });
+  }
+
+  void init() async {
+    await StorageService.instance.init();
+    await ref.read(languageProvider.notifier).initStateLanguage();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final languageState = ref.watch(languageProvider);
     return MaterialApp.router(
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
-      locale: prueba.locale,
+      locale: languageState.locale?.locale,
       routerConfig: appRouter,
       debugShowCheckedModeBanner: false,
       theme: AppTheme(selectedColor: 0).getTheme(),

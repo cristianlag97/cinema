@@ -10,4 +10,9 @@ class HumanFormats {
 
     return formatterNumber;
   }
+
+  static String shortDate(DateTime date, String language) {
+    final format = DateFormat.yMMMEd(language);
+    return format.format(date);
+  }
 }

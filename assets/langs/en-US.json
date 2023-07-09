@@ -30,6 +30,12 @@
       "action": "Start searching"
     }
   },
+  "movie_info": {
+    "premieres": "Premieres:",
+    "video_title": "Videos",
+    "recomendation_title": "recommendations",
+    "empty_recomendation_description": "Couldn't load similar movies"
+  },
   "search_page": {
     "title": "Search movie"
   }

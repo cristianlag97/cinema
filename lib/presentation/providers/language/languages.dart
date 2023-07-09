@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../config/config.dart';
 import '../../../domain/domain.dart';
+import '../providers.dart';
 
 part 'language_provider.dart';
 part 'language_repository_provider.dart';

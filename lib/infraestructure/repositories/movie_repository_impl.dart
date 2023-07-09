@@ -16,11 +16,8 @@ class MovieRepositoryImpl extends MoviesRepository {
   }
 
   @override
-  Future<List<Movie>> getTopRated({
-    int page = 1,
-    String language = 'en-US',
-  }) {
-    return dataSource.getTopRated(page: page, language: language);
+  Future<List<Movie>> getTopRated({int page = 1}) {
+    return dataSource.getTopRated(page: page);
   }
 
   @override
@@ -36,5 +33,15 @@ class MovieRepositoryImpl extends MoviesRepository {
   @override
   Future<List<Movie>> searchMovie(String query) {
     return dataSource.searchMovie(query);
+  }
+
+  @override
+  Future<List<Movie>> getSimilarMovies(int movieId) {
+    return dataSource.getSimilarMovies(movieId);
+  }
+
+  @override
+  Future<List<Video>> getYoutubeVideosById(int movieId) {
+    return dataSource.getYoutubeVideosById(movieId);
   }
 }

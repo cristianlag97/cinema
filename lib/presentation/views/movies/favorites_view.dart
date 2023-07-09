@@ -27,17 +27,16 @@ class _FavoritesViewState extends ConsumerState<FavoritesView> {
   void initState() {
     super.initState();
     loadNextPage();
-    // ref.read(favoriteMoviesProvider.notifier).loadNextPage();
   }
 
   @override
   Widget build(BuildContext context) {
     final List<Movie> movies =
         ref.watch(favoriteMoviesProvider).values.toList();
+    ref.watch(languageProvider);
 
     if (movies.isEmpty) {
       final colors = Theme.of(context).colorScheme;
-      ref.watch(languageProvider);
       return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

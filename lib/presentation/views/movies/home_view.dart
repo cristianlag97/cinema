@@ -22,16 +22,15 @@ class _HomeViewState extends ConsumerState<HomeView>
   Widget build(BuildContext context) {
     super.build(context);
 
+    final lagunage = ref.watch(languageProvider);
     final initialLoading = ref.watch(initialLoadingProvider);
     if (initialLoading) return const FullScreenLoader();
-    final lagunage = ref.watch(languageProvider);
 
     DateTime now = DateTime.now();
     String dayOfWeek =
-        DateFormat('EEEE d', lagunage.locale!.languageCode).format(now);
+        DateFormat('EEEE d', lagunage.locale!.language).format(now);
 
     final nowPlayingMoviesState = ref.watch(nowPlayingMoviesProvider);
-    // final popularMoviesState = ref.watch(popularsMoviesProvider);
     final sliderShowMovies = ref.watch(moviesSlideShowProvider);
     final topRatedMoviesState = ref.watch(topRatedmoviesProvider);
     final upcomingoviesState = ref.watch(upcomingMoviesProvider);
@@ -64,12 +63,6 @@ class _HomeViewState extends ConsumerState<HomeView>
                 loadNextPage: () =>
                     ref.read(upcomingMoviesProvider.notifier).loadNextPage(),
               ),
-              // MovieHorizontalListView(
-              //   movies: popularMoviesState,
-              //   title: 'Populares',
-              //   loadNextPage: () =>
-              //       ref.read(popularsMoviesProvider.notifier).loadNextPage(),
-              // ),
               MovieHorizontalListView(
                 movies: topRatedMoviesState,
                 title: 'home.top_rated'.tr(),

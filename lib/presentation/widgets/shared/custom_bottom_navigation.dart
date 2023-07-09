@@ -31,7 +31,7 @@ class CustomBottomNavigation extends ConsumerWidget {
           BottomNavigationBarItem(
               icon: const Icon(Icons.home_max), label: 'bottom_nav.home'.tr()),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.label_outline),
+            icon: const Icon(Icons.thumbs_up_down_outlined),
             label: 'bottom_nav.popular'.tr(),
           ),
           BottomNavigationBarItem(

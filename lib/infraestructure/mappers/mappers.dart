@@ -5,3 +5,4 @@ import '../models/models.dart';
 
 part 'actor_mapper.dart';
 part 'movie_mapper.dart';
+part 'video_mapper.dart';

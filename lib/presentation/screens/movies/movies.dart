@@ -1,11 +1,13 @@
 library presentation.screen.movies;
 
 import 'package:animate_do/animate_do.dart';
-import 'package:cinemapedia/config/contans/local_storage.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../config/config.dart';
 import '../../../domain/domain.dart';
+import '../../../infraestructure/models/models.dart';
 import '../../providers/providers.dart';
 import '../../views/views.dart';
 import '../../widgets/widgets.dart';

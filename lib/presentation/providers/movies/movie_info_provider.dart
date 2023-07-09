@@ -13,6 +13,10 @@ class MovieMapNotifier extends StateNotifier<Map<String, Movie>> {
 
     state = {...state, movieId: movie};
   }
+
+  Future<void> refreshListMovie() async {
+    state = {};
+  }
 }
 
 final StateNotifierProvider<MovieMapNotifier, Map<String, Movie>> movieInfo =
@@ -22,3 +26,8 @@ final StateNotifierProvider<MovieMapNotifier, Map<String, Movie>> movieInfo =
     return MovieMapNotifier(getMovie: fetchMovie);
   },
 );
+
+final similarMoviesProvider = FutureProvider.family((ref, int movieId) {
+  final movieRepository = ref.watch(movieRepositoryProvider);
+  return movieRepository.getSimilarMovies(movieId);
+});

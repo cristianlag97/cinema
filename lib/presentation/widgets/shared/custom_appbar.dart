@@ -61,17 +61,13 @@ class _SelectLangage extends StatefulWidget {
 class _SelectLangageState extends State<_SelectLangage> {
   @override
   Widget build(BuildContext context) {
-    final prueba = widget.ref.watch(languageProvider);
+    final languageState = widget.ref.watch(languageProvider);
     final listlanguage = widget.ref.watch(listLanguageProvider);
-
-    print(
-        '====> ${StorageService.instance.getLanguageCode} -- {${StorageService.instance.getFlag} -- ${prueba.flag}}');
 
     return DropdownButton(
         underline: const SizedBox(),
         icon: SvgPicture.asset(
-          prueba.flag!,
-          // ListLanguages.languages[1].flag,
+          languageState.flag!,
           width: 20,
         ),
         items: listlanguage
@@ -90,8 +86,6 @@ class _SelectLangageState extends State<_SelectLangage> {
           widget.ref
               .read(languageProvider.notifier)
               .toggleLanguage(context, language!);
-          await StorageService.instance.setLanguageCode(language.id);
-          await StorageService.instance.setFlag(language.flag);
         });
   }
 }

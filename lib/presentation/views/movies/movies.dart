@@ -11,3 +11,4 @@ import '../../widgets/widgets.dart';
 
 part 'favorites_view.dart';
 part 'home_view.dart';
+part 'popular_view.dart';
