@@ -16,6 +16,9 @@ class CustomBottomNavigation extends ConsumerWidget {
       case 2:
         context.go('/home/2');
         break;
+      case 3:
+        context.go('/home/3');
+        break;
     }
   }
 
@@ -23,10 +26,14 @@ class CustomBottomNavigation extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     ref.watch(languageProvider);
 
+    final colors = Theme.of(context).colorScheme;
+
     return BottomNavigationBar(
         onTap: (int index) => onItemTapped(context, index),
         elevation: 0,
         currentIndex: currentIndex,
+        selectedItemColor: colors.primary,
+        unselectedItemColor: colors.secondary,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
               icon: const Icon(Icons.home_max), label: 'bottom_nav.home'.tr()),
@@ -37,6 +44,10 @@ class CustomBottomNavigation extends ConsumerWidget {
           BottomNavigationBarItem(
             icon: const Icon(Icons.favorite_outline),
             label: 'bottom_nav.favorite'.tr(),
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.settings_outlined),
+            label: 'bottom_nav.settings'.tr(),
           ),
         ]);
   }

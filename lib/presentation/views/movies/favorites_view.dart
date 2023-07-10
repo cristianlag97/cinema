@@ -7,7 +7,8 @@ class FavoritesView extends ConsumerStatefulWidget {
   ConsumerState<FavoritesView> createState() => _FavoritesViewState();
 }
 
-class _FavoritesViewState extends ConsumerState<FavoritesView> {
+class _FavoritesViewState extends ConsumerState<FavoritesView>
+    with AutomaticKeepAliveClientMixin {
   bool isLastPage = false;
   bool isLoadingPage = false;
 
@@ -31,6 +32,7 @@ class _FavoritesViewState extends ConsumerState<FavoritesView> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     final List<Movie> movies =
         ref.watch(favoriteMoviesProvider).values.toList();
     ref.watch(languageProvider);
@@ -68,4 +70,7 @@ class _FavoritesViewState extends ConsumerState<FavoritesView> {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

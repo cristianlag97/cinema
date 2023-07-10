@@ -8,6 +8,8 @@ class StorageService {
 
   static const String _savedLanguage = 'saved_language';
   static const String _savedFlag = 'saved_flag';
+  static const String _savedColor = 'saved_color';
+  static const String _savedTheme = 'saved_theme';
 
   Future<void> init() async {
     Enviroment.preferences = await SharedPreferences.getInstance();
@@ -27,4 +29,16 @@ class StorageService {
   String get getFlag =>
       Enviroment.preferences?.getString(_savedFlag) ??
       'assets/icons/flag-for-usa.svg';
+
+  int get getIndexColor => Enviroment.preferences?.getInt(_savedColor) ?? 0;
+
+  Future<void> setIndexColor(int value) async {
+    await Enviroment.preferences?.setInt(_savedColor, value);
+  }
+
+  bool get getIsDark => Enviroment.preferences?.getBool(_savedTheme) ?? false;
+
+  Future<void> setIsDark(bool value) async {
+    await Enviroment.preferences?.setBool(_savedTheme, value);
+  }
 }

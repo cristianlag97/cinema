@@ -30,6 +30,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
     HomeView(),
     PopularView(),
     FavoritesView(),
+    ConfigurationView()
   ];
 
   @override

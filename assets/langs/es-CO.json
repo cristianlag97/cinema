@@ -10,7 +10,8 @@
   "bottom_nav": {
      "home": "Inicio",
      "popular": "Populares",
-     "favorite": "Favoritos"
+     "favorite": "Favoritos",
+     "settings": "Configuración"
   },
   "page_loading": {
     "title": "Espere por favor",
@@ -35,6 +36,10 @@
     "video_title": "Videos",
     "recomendation_title": "Recomendaciones",
     "empty_recomendation_description": "No se pudo cargar películas similares"
+  },
+  "settings_page": {
+    "title": "Cambiar tema",
+    "this_color": "Este color"
   },
   "search_page": {
     "title": "Buscar película"

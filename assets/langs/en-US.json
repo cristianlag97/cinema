@@ -10,7 +10,8 @@
   "bottom_nav": {
     "home": "Home",
     "popular": "Popular",
-    "favorite": "Favorites"
+    "favorite": "Favorites",
+    "settings": "Settings"
   },
   "page_loading": {
     "title": "Please wait",
@@ -35,6 +36,10 @@
     "video_title": "Videos",
     "recomendation_title": "recommendations",
     "empty_recomendation_description": "Couldn't load similar movies"
+  },
+  "settings_page": {
+    "title": "Theme changer",
+    "this_color": "This color"
   },
   "search_page": {
     "title": "Search movie"

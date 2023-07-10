@@ -55,18 +55,20 @@ class _MainAppState extends ConsumerState<MainApp> {
   void init() async {
     await StorageService.instance.init();
     await ref.read(languageProvider.notifier).initStateLanguage();
+    await ref.read(themeNotifierProvider.notifier).initTheme();
   }
 
   @override
   Widget build(BuildContext context) {
     final languageState = ref.watch(languageProvider);
+    final AppTheme appTheme = ref.watch(themeNotifierProvider);
     return MaterialApp.router(
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: languageState.locale?.locale,
       routerConfig: appRouter,
       debugShowCheckedModeBanner: false,
-      theme: AppTheme(selectedColor: 0).getTheme(),
+      theme: appTheme.getTheme(),
     );
   }
 }
