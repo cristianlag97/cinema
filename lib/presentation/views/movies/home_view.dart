@@ -30,6 +30,8 @@ class _HomeViewState extends ConsumerState<HomeView>
     String dayOfWeek =
         DateFormat('EEEE d', lagunage.locale!.language).format(now);
 
+    FlutterNativeSplash.remove();
+
     final nowPlayingMoviesState = ref.watch(nowPlayingMoviesProvider);
     final sliderShowMovies = ref.watch(moviesSlideShowProvider);
     final topRatedMoviesState = ref.watch(topRatedmoviesProvider);

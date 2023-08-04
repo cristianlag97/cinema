@@ -50,7 +50,7 @@ class _FavoritesViewState extends ConsumerState<FavoritesView>
             ),
             Text(
               'favorete_page.empty_state.description'.tr(),
-              style: const TextStyle(fontSize: 20, color: Colors.black45),
+              style: TextStyle(fontSize: 20, color: colors.secondary),
             ),
             const SizedBox(height: 20),
             FilledButton.tonal(
