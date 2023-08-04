@@ -25,8 +25,7 @@ class MoviesSliderShow extends StatelessWidget {
         ),
         itemCount: movies.length,
         itemBuilder: (context, index) {
-          final movie = movies[index];
-          return _SlideShow(movie: movie);
+          return _SlideShow(movie: movies[index]);
         },
       ),
     );
@@ -57,19 +56,13 @@ class _SlideShow extends StatelessWidget {
         decoration: decoration,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20),
-          child: Image.network(
-            movie.backdropPath,
-            fit: BoxFit.cover,
-            loadingBuilder: (context, child, loadingProgress) {
-              if (loadingProgress != null) {
-                return const DecoratedBox(
-                  decoration: BoxDecoration(color: Colors.black45),
-                );
-              }
-              return GestureDetector(
-                  onTap: () => context.push('/home/0/movie/${movie.id}'),
-                  child: FadeIn(child: child));
-            },
+          child: GestureDetector(
+            onTap: () => context.push('/home/0/movie/${movie.id}'),
+            child: FadeInImage(
+              fit: BoxFit.cover,
+              placeholder: const AssetImage('assets/loader/bottle-loader.gif'),
+              image: NetworkImage(movie.backdropPath),
+            ),
           ),
         ),
       ),

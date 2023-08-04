@@ -1,5 +1,7 @@
 library presentation.widget.movies;
 
+import 'dart:math';
+
 import 'package:animate_do/animate_do.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:easy_localization/easy_localization.dart';

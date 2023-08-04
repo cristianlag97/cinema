@@ -40,3 +40,4 @@ flutter:
     - .env
     - assets/langs/
     - assets/icons/
+    - assets/loader/

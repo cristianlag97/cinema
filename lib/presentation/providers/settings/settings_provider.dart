@@ -13,7 +13,7 @@ class ThemeNotifier extends StateNotifier<AppTheme> {
 
   Future<void> toggleDarkMode() async {
     state = state.copyWith(isDarkMode: !state.isDarkMode);
-    await StorageService.instance.setIsDark(!state.isDarkMode);
+    await StorageService.instance.setIsDark(state.isDarkMode);
   }
 
   Future<void> changeColorIndex(int colorIndex) async {
